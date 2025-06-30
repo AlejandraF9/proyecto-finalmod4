@@ -1,4 +1,5 @@
 import { createNewUser } from "../api/apiUsers";
+import { dataValidations } from "../utils/utils";
 
 
 const container = document.getElementById ("app");
@@ -17,19 +18,32 @@ newUserdiv.innerHTML =`
 
 const formNewuser = document.getElementById("divNewUserForm")
 
-formNewuser.addEventListener ("submit", function (event){
+formNewuser.addEventListener ("submit", async (event) => {
     event.preventDefault();
     const name = document.getElementById("registerFormName").value.trim();
     const email = document.getElementById("registerFormEmail").value.trim();
     const password = document.getElementById("registerFormPassword").value.trim();
     const country = document.getElementById("registerFormCountry").value.trim();
 
-    createNewUser({
-        name,
-        email,
-        password,
-        country
-    })
+    const validations = dataValidations({name: name, email: email, password: password, /*country: country*/});
+    
+    if(validations) {
+      const userData = {
+      name,
+      email,
+      password,
+      /*country,*/
+    };
+
+   await createNewUser(userData);
+}
+
+    // createNewUser({
+    //     name,
+    //     email,
+    //     password,
+    //     country
+    // })
 
 })
 
