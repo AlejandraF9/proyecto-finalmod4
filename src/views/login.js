@@ -1,33 +1,34 @@
-function userList(users) {
-    const userList = document.getElementById("user-list");
-    userList.innerHTML= ""
-    users.forEach(element => {
+function handleLogin() {
+    const app = document.getElementById(app);
+    const username = document.getElementById('username').value;
+    const password = document.getElementById('password').value;
+    const errorMessage = document.getElementById('error-message');
+    const successMessage = document.getElementById('success-message');
 
-        const userDiv = document.createElement("div");
-        userDiv.classList.add("card");
+    // Reset messages
+    errorMessage.style.display = 'none';
+    successMessage.style.display = 'none';
 
-        const email = document.createElement("input");
-        email.textContent = `email:${element.email}`
+    // Basic client-side validation
+    if (!username || !password) {
+        errorMessage.textContent = 'Please complete all fields';
+        errorMessage.style.display = 'block';
+        eturn;
+    }
 
-        const password = document.createElement("input");
-        password.textContent = `password:${element.password}`
-
-        const repeatPassword = document.createElement("input");
-        repeatPassword.textContent = `repeat password:${element.repeatPassword}`
-
-        const loginButton = document.createElement("button");
-        loginButton.textContent = "login";        
-        
-
-        
-        userDiv.appendChild(email);
-        userDiv.appendChild(password);
-        userDiv.appendChild(repeatPassword);
-        userDiv.appendChild(loginButton);    
-        userList.appendChild(userDiv);
-    })
-  
+    // Simulated login logic (replace with actual API call in production)
+    if (username === 'admin' && password === 'password123') {
+        successMessage.style.display = 'block';
+        // Redirect or perform further actions here
+        console.log('Login successful');
+    } else {
+            errorMessage.style.display = 'block';
+        }
 }
 
-getUsers()
-
+// Allow login with Enter key
+document.addEventListener('keypress', function(event) {
+    if (event.key === 'Enter') {
+        handleLogin();
+        }
+});

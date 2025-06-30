@@ -9,9 +9,9 @@ async function getUsers() {
             throw new Error("Error en la petición getUsers")
         }
         const allUsers = await response.json();
-        console.log(users); 
-        userList(users);
-        return users;
+        console.log(allUsers); 
+        userList(allUsers);
+        return allUsers;
     } catch (error) {
         console.error("Error")
     }
