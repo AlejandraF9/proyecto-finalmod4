@@ -24,36 +24,3 @@ export async function createNewUser(user) {
   }
 }
 
-
-
-//Editar usuario
-
-export async function editUser(id, userData) {
-  const url = `${baseUrl}/users/${id}`;
-  try {
-    const response = await fetch(url, {
-      method: "PUT",
-      headers: {
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify({
-        name: userData.name,
-        email: userData.email,
-        password: userData.password,
-        // country: userData.country,
-        // favourites: userData.favourites
-      })
-    });
-
-    if(!response.ok) {
-      throw new Error("Error editing user");
-    };
-
-    const updatedUser = await response.json();
-
-    console.log(updatedUser, "User updated");
-
-  } catch (error) {
-    console.error(error);
-  }
-};
