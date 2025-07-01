@@ -1,4 +1,4 @@
-export function dataValidations({name, email, password, /*country*/}) {
+export function dataValidations({name, email, password}) {
 
     if(name !== undefined) {
         if(name.length < 2 || !name) {
@@ -27,8 +27,6 @@ export function dataValidations({name, email, password, /*country*/}) {
         return false;
         }
     };
-
-    //VALIDAR COUNTRY SI SE INCLUYE
 
     return true;
 };
